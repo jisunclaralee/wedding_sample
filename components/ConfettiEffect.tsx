@@ -30,8 +30,11 @@ export default function ConfettiEffect() {
       width={windowSize.width}
       height={windowSize.height}
       recycle={recycle}
-      numberOfPieces={200}
-      colors={['#ff9ecd', '#ffc0cb', '#ffb6c1', '#ff69b4', '#fff0f5']}
+      numberOfPieces={300}
+      colors={['#ff9ecd', '#ffc0cb', '#ffb6c1', '#ff69b4', '#fff0f5', '#ffe4e1', '#ffd1dc']}
+      gravity={0.15}
+      wind={0.01}
+      opacity={0.8}
     />
   );
 }
