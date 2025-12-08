@@ -7,10 +7,13 @@
 :root {
   --elegant-primary: #8b7355;
   --elegant-secondary: #d4c5b9;
-  --romantic-primary: #ff9ecd;
-  --romantic-secondary: #ffe4f3;
+  --elegant-bg: #faf8f5;
+  --romantic-primary: #ff69b4;
+  --romantic-secondary: #ffc0cb;
+  --romantic-bg: #fff5f8;
   --modern-primary: #2c3e50;
-  --modern-secondary: #ecf0f1;
+  --modern-secondary: #3498db;
+  --modern-bg: #ecf0f1;
 }
 
 body {
@@ -19,19 +22,68 @@ body {
   overflow-x: hidden;
 }
 
+/* 우아한 테마 - 클래식하고 세련된 느낌 */
 .theme-elegant {
   --primary-color: var(--elegant-primary);
   --secondary-color: var(--elegant-secondary);
+  background-color: var(--elegant-bg);
 }
 
+.theme-elegant h1,
+.theme-elegant h2,
+.theme-elegant h3 {
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.05em;
+  color: var(--elegant-primary);
+}
+
+.theme-elegant section {
+  border-top: 1px solid rgba(139, 115, 85, 0.1);
+}
+
+/* 로맨틱 테마 - 사랑스럽고 화사한 느낌 */
 .theme-romantic {
   --primary-color: var(--romantic-primary);
   --secondary-color: var(--romantic-secondary);
+  background: linear-gradient(180deg, #fff5f8 0%, #ffffff 100%);
 }
 
+.theme-romantic h1,
+.theme-romantic h2,
+.theme-romantic h3 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  color: var(--romantic-primary);
+  text-shadow: 0 2px 4px rgba(255, 105, 180, 0.1);
+}
+
+.theme-romantic section {
+  background: rgba(255, 192, 203, 0.05);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+}
+
+/* 모던 테마 - 깔끔하고 미니멀한 느낌 */
 .theme-modern {
   --primary-color: var(--modern-primary);
   --secondary-color: var(--modern-secondary);
+  background-color: var(--modern-bg);
+}
+
+.theme-modern h1,
+.theme-modern h2,
+.theme-modern h3 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  color: var(--modern-primary);
+  letter-spacing: -0.02em;
+}
+
+.theme-modern section {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--modern-secondary);
 }
 
 .fade-in {
@@ -51,4 +103,86 @@ body {
 
 .scroll-smooth {
   scroll-behavior: smooth;
+}
+
+/* 테마별 메인 섹션 스타일 */
+.theme-elegant .main-image {
+  border-radius: 0;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  border: 8px solid #f5f1ec;
+}
+
+.theme-elegant .main-title {
+  font-family: 'Noto Serif KR', serif;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.theme-elegant .main-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: var(--primary-color);
+}
+
+.theme-romantic .main-image {
+  border-radius: 999px;
+  box-shadow: 0 0 40px rgba(255,158,205,0.4), 0 20px 60px rgba(0,0,0,0.2);
+  border: 6px solid rgba(255,255,255,0.9);
+}
+
+.theme-romantic .main-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(255,158,205,0.3);
+  background: linear-gradient(135deg, #ff9ecd 0%, #ff6b9d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.theme-romantic .main-text {
+  position: relative;
+}
+
+.theme-romantic .main-text::before {
+  content: '♥';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--primary-color);
+  opacity: 0.6;
+}
+
+.theme-modern .main-image {
+  border-radius: 0;
+  box-shadow: 20px 20px 0 var(--primary-color), 0 10px 40px rgba(0,0,0,0.3);
+  border: none;
+  transform: translate(-10px, -10px);
+}
+
+.theme-modern .main-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.theme-modern .main-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-color);
 }

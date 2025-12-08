@@ -16,9 +16,9 @@ export default function MainSection({ data, onImageLoad }: MainSectionProps) {
   });
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 main-section">
       <div className="max-w-2xl w-full space-y-8 fade-in">
-        <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-2xl">
+        <div className="relative w-full aspect-[3/4] main-image overflow-hidden shadow-2xl">
           <Image
             src={data.images.main}
             alt="Wedding Photo"
@@ -29,8 +29,8 @@ export default function MainSection({ data, onImageLoad }: MainSectionProps) {
           />
         </div>
 
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--primary-color)' }}>
+        <div className="text-center space-y-4 main-text">
+          <h1 className="text-4xl md:text-5xl font-bold main-title" style={{ color: 'var(--primary-color)' }}>
             {data.groom.name} & {data.bride.name}
           </h1>
           

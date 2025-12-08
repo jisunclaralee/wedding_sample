@@ -22,7 +22,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
               href={`tel:${data.groom.phone}`}
               className="text-sm text-gray-600 hover:text-gray-900"
             >
-              📞 {data.groom.phone}
+               {data.groom.phone}
             </a>
           </div>
 
@@ -35,7 +35,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
               href={`tel:${data.bride.phone}`}
               className="text-sm text-gray-600 hover:text-gray-900"
             >
-              📞 {data.bride.phone}
+               {data.bride.phone}
             </a>
           </div>
         </div>

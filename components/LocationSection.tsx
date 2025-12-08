@@ -34,19 +34,19 @@ export default function LocationSection({ data }: LocationSectionProps) {
               className="flex-1 py-3 px-4 rounded-lg font-semibold text-white transition-colors"
               style={{ backgroundColor: 'var(--primary-color)' }}
             >
-              🗺️ 지도 보기
+               지도 보기
             </button>
             <button
               onClick={copyAddress}
               className="flex-1 py-3 px-4 bg-gray-200 rounded-lg font-semibold text-gray-700 hover:bg-gray-300 transition-colors"
             >
-              📋 주소 복사
+               주소 복사
             </button>
           </div>
 
           <div className="pt-4 text-sm text-gray-600 space-y-2">
-            <p>🚇 지하철: 2호선 선릉역 1번 출구 도보 5분</p>
-            <p>🚗 주차: 건물 내 주차장 이용 가능</p>
+            <p> 지하철: 2호선 선릉역 1번 출구 도보 5분</p>
+            <p> 주차: 건물 내 주차장 이용 가능</p>
           </div>
         </div>
       </div>
