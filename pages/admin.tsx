@@ -6,62 +6,33 @@ import { weddingData as defaultData } from '@/data/wedding-data';
 
 export default function AdminPage() {
   const router = useRouter();
-  
-  const [formData, setFormData] = useState<WeddingData>({
-    groom: {
-      name: '',
-      phone: '',
-      account: { bank: '', accountNumber: '', holder: '' },
-    },
-    bride: {
-      name: '',
-      phone: '',
-      account: { bank: '', accountNumber: '', holder: '' },
-    },
-    wedding: {
-      date: '',
-      time: '',
-      locationName: '',
-      locationAddress: '',
-      message: '',
-    },
-    images: {
-      main: '',
-      gallery: [],
-    },
-    theme: 'elegant',
-    font: 'serif',
-    customColors: {
-      primary: '#8b7355',
-      secondary: '#d4c5b9',
-      background: '#faf8f5',
-    },
-    features: {
-      confetti: true,
-      guestbook: true,
-      rsvp: true,
-      gallery: true,
-      moneyGift: true,
-      pdfDownload: true,
-      music: false,
-      flower: false,
-    },
-    confettiType: 'mixed',
-    musicUrl: '',
-    flowerUrl: '',
-    validUntil: '',
-  });
-
+  const [formData, setFormData] = useState<WeddingData>(defaultData);
   const [galleryInput, setGalleryInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   // 현재 배포된 데이터를 불러오기
   useEffect(() => {
-    loadCurrentData();
+    setFormData(defaultData);
   }, []);
 
-  const loadCurrentData = () => {
-    setFormData(defaultData);
+  // 공통 업데이트 함수
+  const updateGroomField = (field: string, value: string) => {
+    setFormData({...formData, groom: {...formData.groom, [field]: value}});
+  };
+
+  const updateBrideField = (field: string, value: string) => {
+    setFormData({...formData, bride: {...formData.bride, [field]: value}});
+  };
+
+  const updateGroomAccount = (field: string, value: string) => {
+    setFormData({...formData, groom: {...formData.groom, account: {...formData.groom.account!, [field]: value}}});
+  };
+
+  const updateBrideAccount = (field: string, value: string) => {
+    setFormData({...formData, bride: {...formData.bride, account: {...formData.bride.account!, [field]: value}}});
+  };
+
+  const updateWeddingField = (field: string, value: string) => {
+    setFormData({...formData, wedding: {...formData.wedding, [field]: value}});
   };
 
   // 데이터 저장 (localStorage만)

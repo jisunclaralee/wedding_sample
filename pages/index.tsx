@@ -25,7 +25,6 @@ export default function Home() {
         try {
           const parsedData = JSON.parse(savedData);
           setWeddingData(parsedData);
-          console.log('✅ 관리자 페이지에서 저장한 데이터를 불러왔습니다.');
         } catch (error) {
           console.error('데이터 파싱 오류:', error);
         }

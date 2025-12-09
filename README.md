@@ -1,171 +1,136 @@
-# 📱 모바일 청첩장 생성기
+# 🎊 모바일 청첩장 프로젝트
 
-Next.js와 TypeScript로 만든 모바일 청첩장 웹 애플리케이션입니다.
+Next.js 기반의 커스터마이징 가능한 모바일 청첩장 웹사이트
+
+## 🌐 배포 링크
+
+- **청첩장**: https://wedding-sample-tan.vercel.app/
+- **관리자**: https://wedding-sample-tan.vercel.app/admin
 
 ## ✨ 주요 기능
 
-- 🎨 **3가지 테마**: 우아한(Elegant), 로맨틱(Romantic), 모던(Modern)
-- 🌸 **꽃가루 효과**: 페이지 로드 시 아름다운 꽃가루 애니메이션
-- 📸 **갤러리**: 사진 갤러리 및 전체화면 보기
-- 📍 **위치 정보**: 카카오맵 연동 및 주소 복사
-- 💰 **계좌번호**: 축의금 계좌 정보 표시 및 복사
-- 📝 **방명록**: 실시간 방명록 작성
-- ✅ **참석 설문**: 참석 의사 및 인원 조사
-- 📄 **PDF 저장**: 청첩장을 PDF로 다운로드
+- 📱 **반응형 디자인** (모바일/태블릿/데스크톱)
+- 🎨 **3가지 테마** (우아한/로맨틱/모던) + 커스텀 색상
+- 🖼️ **Swiper 갤러리** 슬라이더 (자동 재생, 네비게이션)
+- 🎉 **4가지 컨페티 효과** (하트/꽃잎/반짝이/혼합)
+- 📝 **방명록 & 참석의사** (모달 팝업)
+- 📥 **PDF 다운로드**
+- 🎵 **배경 음악**
+- 💐 **화환 보내기** 링크
+- 💰 **계좌번호 복사** 기능
+- 🗺️ **오시는 길** (카카오맵 연동)
 
-## 🚀 시작하기
+## 🚀 빠른 시작
 
-### 설치
-
+### 1. 설치
 ```bash
 npm install
 ```
 
-### 개발 서버 실행
-
+### 2. 개발 서버 실행
 ```bash
 npm run dev
 ```
 
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
+브라우저에서 http://localhost:3000 열기
 
-### 빌드 테스트
+### 3. 관리자 페이지에서 데이터 입력
+http://localhost:3000/admin 접속하여:
+- 신랑/신부 정보 입력
+- 예식 정보 및 이미지 URL 설정
+- 테마 및 색상 선택
+- 기능 on/off 설정
 
-배포 전에 로컬에서 빌드 테스트:
+### 4. 미리보기
+"💾 데이터 저장" → "👁️ 미리보기" 클릭
 
+## 📦 배포하기
+
+### 방법 1: 로컬 미리보기 (localStorage)
+관리자 페이지에서 "데이터 저장" 버튼만 클릭하면 즉시 반영됨
+
+### 방법 2: 실제 배포 (Vercel)
+1. 관리자 페이지에서 "📥 파일 다운로드" 클릭
+2. 다운로드한 `wedding-data.ts`를 `data/` 폴더에 복사
+3. Git 커밋 & 푸시:
 ```bash
-npm run build
-npm start
+git add data/wedding-data.ts
+git commit -m "Update wedding data"
+git push origin master:main
 ```
+4. Vercel 자동 배포 완료! (1-2분 소요)
 
-## 📝 청첩장 데이터 수정하기
-
-### 방법 1: 관리자 페이지 사용 (추천)
-
-1. 개발 서버를 실행합니다
-2. [http://localhost:3000/admin](http://localhost:3000/admin)에 접속합니다
-3. 폼에 청첩장 정보를 입력합니다
-4. "데이터 생성" 버튼을 클릭합니다
-5. 브라우저 콘솔(F12)에서 출력된 JSON을 복사합니다
-6. `data/wedding-data.ts` 파일을 열고 데이터를 붙여넣습니다
-
-### 방법 2: 직접 수정
-
-`data/wedding-data.ts` 파일을 직접 수정하세요:
-
-```typescript
-export const weddingData: WeddingData = {
-  groom: {
-    name: '신랑 이름',
-    phone: '010-1234-5678',
-    account: {
-      bank: '은행명',
-      accountNumber: '계좌번호',
-      holder: '예금주',
-    },
-  },
-  bride: {
-    name: '신부 이름',
-    phone: '010-9876-5432',
-    // ...
-  },
-  // ...
-};
-```
-
-## 🌐 배포하기
-
-### Vercel 배포
-
-1. GitHub에 코드를 푸시합니다
-2. [Vercel](https://vercel.com)에 가입하고 로그인합니다
-3. "New Project" 클릭
-4. GitHub 저장소를 선택합니다
-5. "Deploy" 클릭
-
-배포 시 메인 페이지(`/`)만 표시되고, 관리자 페이지(`/admin`)는 URL을 직접 입력해야 접근할 수 있습니다.
-
-### 환경 변수 (선택사항)
-
-Vercel 대시보드에서 환경 변수를 설정할 수 있습니다:
-
-- `NEXT_PUBLIC_ADMIN_PASSWORD`: 관리자 페이지 보호용 비밀번호 (구현 필요)
-
-## 📁 프로젝트 구조
+## 📂 프로젝트 구조
 
 ```
-├── components/          # React 컴포넌트
-│   ├── MainSection.tsx
-│   ├── InfoSection.tsx
-│   ├── GallerySection.tsx
-│   ├── LocationSection.tsx
-│   ├── AccountSection.tsx
-│   ├── GuestbookSection.tsx
-│   ├── RSVPSection.tsx
-│   └── ConfettiEffect.tsx
-├── data/
-│   └── wedding-data.ts  # 청첩장 데이터
+wedding-sample/
 ├── pages/
-│   ├── index.tsx        # 메인 청첩장 페이지
-│   └── admin.tsx        # 관리자 입력 페이지
-├── styles/
-│   └── globals.css      # 전역 스타일
+│   ├── index.tsx          # 메인 청첩장 페이지
+│   ├── admin.tsx          # 관리자 페이지
+│   ├── _app.tsx           # App 래퍼
+│   └── _document.tsx      # HTML 문서
+├── components/
+│   ├── MainSection.tsx           # 메인 섹션
+│   ├── InfoSection.tsx           # 신랑신부 정보
+│   ├── GallerySection.tsx        # 사진 갤러리
+│   ├── LocationSection.tsx       # 오시는 길
+│   ├── AccountSection.tsx        # 계좌번호
+│   ├── InteractiveSection.tsx    # 참여하기 버튼
+│   ├── GuestbookSection.tsx      # 방명록
+│   ├── RSVPSection.tsx           # 참석의사
+│   ├── ConfettiEffect.tsx        # 컨페티 효과
+│   └── Modal.tsx                 # 모달 팝업
+├── data/
+│   └── wedding-data.ts    # 청첩장 데이터
 ├── types/
-│   └── wedding.ts       # TypeScript 타입 정의
-└── public/              # 정적 파일
+│   └── wedding.ts         # TypeScript 타입
+├── styles/
+│   └── globals.css        # 전역 스타일
+└── public/                # 정적 파일
 ```
 
 ## 🎨 커스터마이징
 
 ### 테마 변경
-
-`data/wedding-data.ts`에서 `theme` 속성을 변경:
-
-```typescript
-theme: 'elegant' | 'romantic' | 'modern'
-```
+관리자 페이지 → "디자인 & 기능" → 테마 드롭다운
+- **우아한 (elegant)**: 클래식, 세리프, 베이지 톤
+- **로맨틱 (romantic)**: 핑크, 그라데이션, 부드러운 느낌
+- **모던 (modern)**: 대담한 폰트, 그림자, 선명한 색상
 
 ### 색상 변경
+관리자 페이지 → "커스텀 색상" → Color Picker
+- 메인 색상 (Primary)
+- 서브 색상 (Secondary)
+- 배경 색상 (Background)
 
-`styles/globals.css`에서 CSS 변수를 수정:
+### 컨페티 효과 변경
+관리자 페이지 → "추가 기능" → 컨페티 효과 타입
+- 하트 ❤️
+- 꽃잎 🌸
+- 반짝이 ✨
+- 혼합 🎊
 
-```css
-:root {
-  --elegant-primary: #8b7355;
-  --romantic-primary: #ff9ecd;
-  --modern-primary: #2c3e50;
-}
-```
+## 🛠 기술 스택
 
-## 🛠️ 기술 스택
+- **프레임워크**: Next.js 14 (Pages Router)
+- **언어**: TypeScript
+- **스타일링**: Tailwind CSS
+- **라이브러리**:
+  - Swiper (갤러리 슬라이더)
+  - react-confetti (컨페티 효과)
+  - html2canvas + jsPDF (PDF 생성)
+  - framer-motion (애니메이션)
+- **배포**: Vercel
+- **저장소**: GitHub
 
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animation**: Framer Motion, React Confetti
-- **Image Optimization**: Next.js Image
+## 📖 상세 문서
 
-## 📱 반응형 디자인
+전체 기능 명세 및 폴더 구조는 [SPECIFICATION.md](./SPECIFICATION.md) 참고
 
-모든 화면 크기에서 최적화되어 있습니다:
-- 모바일 (320px~)
-- 태블릿 (768px~)
-- 데스크톱 (1024px~)
-
-## 🔒 보안 참고사항
-
-- `/admin` 페이지는 개발 환경에서만 사용하세요
-- 프로덕션 배포 시 민감한 정보(계좌번호 등)를 주의하세요
-- 필요시 관리자 페이지에 인증을 추가하세요
-
-## 📄 라이선스
+## 📝 라이선스
 
 MIT License
 
-## 🤝 기여
+---
 
-이슈와 PR은 언제나 환영합니다!
-
-## 💬 문의
-
-문제가 있으시면 GitHub Issues를 이용해주세요.
+Made with ❤️ by Next.js & TypeScript
