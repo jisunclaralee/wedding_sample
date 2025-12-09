@@ -31,6 +31,11 @@ export default function AdminPage() {
     },
     theme: 'elegant',
     font: 'serif',
+    customColors: {
+      primary: '#8b7355',
+      secondary: '#d4c5b9',
+      background: '#faf8f5',
+    },
     features: {
       confetti: true,
       guestbook: true,
@@ -38,7 +43,12 @@ export default function AdminPage() {
       gallery: true,
       moneyGift: true,
       pdfDownload: true,
+      music: false,
+      flower: false,
     },
+    confettiType: 'mixed',
+    musicUrl: '',
+    flowerUrl: '',
     validUntil: '',
   });
 
@@ -426,9 +436,105 @@ export const weddingData: WeddingData = ${JSON.stringify(formData, null, 2)};`;
                       {key === 'gallery' && '📸 갤러리'}
                       {key === 'moneyGift' && '💰 계좌번호'}
                       {key === 'pdfDownload' && '📄 PDF 저장'}
+                      {key === 'music' && '🎵 배경 음악'}
+                      {key === 'flower' && '💐 화환 보내기'}
                     </span>
                   </label>
                 ))}
+              </div>
+            </div>
+
+            {/* 커스텀 색상 */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h2 className="text-xl font-bold mb-4 text-indigo-600">커스텀 색상</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2">메인 색상</label>
+                  <input
+                    type="color"
+                    value={formData.customColors?.primary || '#8b7355'}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      customColors: {
+                        ...formData.customColors!,
+                        primary: e.target.value
+                      }
+                    })}
+                    className="w-full h-12 border rounded-lg cursor-pointer"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">서브 색상</label>
+                  <input
+                    type="color"
+                    value={formData.customColors?.secondary || '#d4c5b9'}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      customColors: {
+                        ...formData.customColors!,
+                        secondary: e.target.value
+                      }
+                    })}
+                    className="w-full h-12 border rounded-lg cursor-pointer"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">배경 색상</label>
+                  <input
+                    type="color"
+                    value={formData.customColors?.background || '#faf8f5'}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      customColors: {
+                        ...formData.customColors!,
+                        background: e.target.value
+                      }
+                    })}
+                    className="w-full h-12 border rounded-lg cursor-pointer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 컨페티 & 음악 & 화환 */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h2 className="text-xl font-bold mb-4 text-pink-600">추가 기능</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2">컨페티 효과 타입</label>
+                  <select
+                    value={formData.confettiType || 'mixed'}
+                    onChange={(e) => setFormData({...formData, confettiType: e.target.value as any})}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500"
+                  >
+                    <option value="hearts">💕 하트</option>
+                    <option value="flowers">🌸 꽃잎</option>
+                    <option value="sparkles">✨ 반짝이</option>
+                    <option value="mixed">🎊 혼합 (추천)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">배경 음악 URL</label>
+                  <input
+                    type="url"
+                    value={formData.musicUrl || ''}
+                    onChange={(e) => setFormData({...formData, musicUrl: e.target.value})}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500"
+                    placeholder="https://example.com/music.mp3"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">MP3 파일 URL을 입력하세요</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">화환 보내기 URL</label>
+                  <input
+                    type="url"
+                    value={formData.flowerUrl || ''}
+                    onChange={(e) => setFormData({...formData, flowerUrl: e.target.value})}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500"
+                    placeholder="https://flower.example.com"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">화환 주문 사이트 URL을 입력하세요</p>
+                </div>
               </div>
             </div>
 

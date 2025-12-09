@@ -5,8 +5,7 @@ import InfoSection from '@/components/InfoSection';
 import GallerySection from '@/components/GallerySection';
 import LocationSection from '@/components/LocationSection';
 import AccountSection from '@/components/AccountSection';
-import GuestbookSection from '@/components/GuestbookSection';
-import RSVPSection from '@/components/RSVPSection';
+import InteractiveSection from '@/components/InteractiveSection';
 import ConfettiEffect from '@/components/ConfettiEffect';
 import { useState, useEffect } from 'react';
 import { WeddingData } from '@/types/wedding';
@@ -122,9 +121,15 @@ export default function Home() {
           <AccountSection groom={weddingData.groom} bride={weddingData.bride} />
         )}
         
-        {weddingData.features.rsvp && <RSVPSection />}
-        
-        {weddingData.features.guestbook && <GuestbookSection />}
+        {/* 방명록, RSVP, 화환 - 통합 섹션 */}
+        {(weddingData.features.guestbook || weddingData.features.rsvp || weddingData.features.flower) && (
+          <InteractiveSection
+            showGuestbook={weddingData.features.guestbook}
+            showRSVP={weddingData.features.rsvp}
+            showFlower={weddingData.features.flower}
+            flowerUrl={weddingData.flowerUrl}
+          />
+        )}
         
         {/* PDF 다운로드 플로팅 버튼 */}
         {weddingData.features.pdfDownload && (
