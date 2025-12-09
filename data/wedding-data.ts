@@ -41,6 +41,11 @@ export const weddingData: WeddingData = {
   },
   theme: 'elegant',
   font: 'serif',
+  customColors: {
+    primary: '#8b7355',
+    secondary: '#d4c5b9',
+    background: '#faf8f5',
+  },
   features: {
     confetti: true,
     guestbook: true,
@@ -48,6 +53,11 @@ export const weddingData: WeddingData = {
     gallery: true,
     moneyGift: true,
     pdfDownload: true,
+    music: false,
+    flower: false,
   },
+  confettiType: 'mixed',
+  musicUrl: '',
+  flowerUrl: '',
   validUntil: '2025-06-30',
 };

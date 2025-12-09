@@ -1,5 +1,10 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface GallerySectionProps {
   images: string[];
@@ -15,28 +20,47 @@ export default function GallerySection({ images }: GallerySectionProps) {
           갤러리
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+          }}
+          className="gallery-swiper"
+        >
           {images.map((image, index) => (
-            <div
-              key={index}
-              className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-              onClick={() => setSelectedImage(image)}
-            >
-              <Image
-                src={image}
-                alt={`Gallery ${index + 1}`}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
+            <SwiperSlide key={index}>
+              <div
+                className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg"
+                onClick={() => setSelectedImage(image)}
+              >
+                <Image
+                  src={image}
+                  alt={`Gallery ${index + 1}`}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
+            <button
+              className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 z-10"
+              onClick={() => setSelectedImage(null)}
+            >
+              ×
+            </button>
             <div className="relative w-full h-full max-w-4xl max-h-[90vh]">
               <Image
                 src={selectedImage}

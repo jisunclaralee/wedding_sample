@@ -37,6 +37,14 @@ export interface WeddingData {
   // 테마 & 스타일
   theme: 'elegant' | 'romantic' | 'modern';
   font: 'serif' | 'sans';
+  
+  // 커스텀 색상 및 폰트
+  customColors?: {
+    primary: string;
+    secondary: string;
+    background: string;
+  };
+  customFont?: string;
 
   // 기능 옵션
   features: {
@@ -46,7 +54,14 @@ export interface WeddingData {
     gallery: boolean; // 갤러리
     moneyGift: boolean; // 계좌번호 표시
     pdfDownload: boolean; // PDF 저장
+    music: boolean; // 배경 음악
+    flower: boolean; // 화환 링크
   };
+
+  // 콘텐츠 설정
+  confettiType?: 'hearts' | 'flowers' | 'sparkles' | 'mixed';
+  musicUrl?: string;
+  flowerUrl?: string;
 
   // 사용 기간
   validUntil?: string; // YYYY-MM-DD

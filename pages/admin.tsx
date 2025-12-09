@@ -54,12 +54,14 @@ export default function AdminPage() {
     setFormData(defaultData);
   };
 
-  // 데이터 저장 (localStorage + 파일 다운로드)
+  // 데이터 저장 (localStorage만)
   const handleSaveData = () => {
-    // localStorage에 저장
     localStorage.setItem('wedding-data', JSON.stringify(formData));
-    
-    // 파일 다운로드
+    alert('✅ 로컬 저장 완료!\n\n미리보기 버튼을 눌러 확인하세요.');
+  };
+
+  // 파일 다운로드
+  const handleDownloadFile = () => {
     const dataStr = `import { WeddingData } from '@/types/wedding';
 
 export const weddingData: WeddingData = ${JSON.stringify(formData, null, 2)};`;
@@ -74,7 +76,7 @@ export const weddingData: WeddingData = ${JSON.stringify(formData, null, 2)};`;
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
     
-    alert('✅ 저장 완료!\n\n📝 로컬 미리보기: 바로 확인 가능\n📦 배포하기:\n  1. 다운로드한 wedding-data.ts를 data/ 폴더에 복사\n  2. git add data/wedding-data.ts\n  3. git commit -m "Update wedding data"\n  4. git push origin master:main');
+    alert('✅ 파일 다운로드 완료!\n\n📦 실제 배포하기:\n  1. 다운로드한 wedding-data.ts를 data/ 폴더에 복사\n  2. git add data/wedding-data.ts\n  3. git commit -m "Update wedding data"\n  4. git push origin master:main');
   };
 
   // 파일에서 데이터 불러오기
@@ -432,20 +434,27 @@ export const weddingData: WeddingData = ${JSON.stringify(formData, null, 2)};`;
 
             {/* 액션 버튼들 */}
             <div className="bg-white rounded-lg shadow p-6 space-y-4">
-              <div className="flex gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <button
                   type="button"
                   onClick={handlePreview}
-                  className="flex-1 py-4 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg font-bold text-lg hover:from-green-700 hover:to-teal-700 transition-all shadow-lg"
+                  className="py-4 bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg font-bold text-lg hover:from-green-700 hover:to-teal-700 transition-all shadow-lg"
                 >
                   👁️ 미리보기
                 </button>
                 <button
                   type="button"
                   onClick={handleSaveData}
-                  className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg"
+                  className="py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg"
                 >
-                  💾 저장 & 다운로드
+                  💾 데이터 저장
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDownloadFile}
+                  className="py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg"
+                >
+                  📥 파일 다운로드
                 </button>
               </div>
 
@@ -464,9 +473,10 @@ export const weddingData: WeddingData = ${JSON.stringify(formData, null, 2)};`;
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-400 p-4 text-sm">
                 <p className="font-semibold mb-2">💡 사용 방법:</p>
                 <ol className="list-decimal ml-5 space-y-1 text-gray-700">
-                  <li><strong>미리보기</strong>: 입력한 데이터로 청첩장 확인 (임시)</li>
-                  <li><strong>저장</strong>: wedding-data.ts 파일 다운로드</li>
-                  <li><strong>배포</strong>: 다운로드한 파일을 data/ 폴더에 복사 후 Git 푸시</li>
+                  <li><strong>미리보기</strong>: 입력한 데이터로 청첩장 확인 (로컬 저장)</li>
+                  <li><strong>데이터 저장</strong>: localStorage에 저장 (임시 미리보기용)</li>
+                  <li><strong>파일 다운로드</strong>: wedding-data.ts 파일 다운로드</li>
+                  <li><strong>실제 배포</strong>: 다운로드한 파일을 data/ 폴더에 복사 후 Git 푸시</li>
                 </ol>
               </div>
             </div>
