@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { RSVPResponse } from '@/types/wedding';
 
-export default function RSVPSection() {
+interface RSVPSectionProps {
+  isModal?: boolean;
+}
+
+export default function RSVPSection({ isModal = false }: RSVPSectionProps) {
   const [responses, setResponses] = useState<RSVPResponse[]>([]);
   const [name, setName] = useState('');
   const [attendance, setAttendance] = useState<'yes' | 'no' | 'maybe'>('yes');
